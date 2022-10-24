@@ -29,6 +29,15 @@
             <form id="tag-form" action="/tagging" method="post">
 
                 <!-- ... your code here ... -->
+               
+                    Latitude:<input type="text" name="n" placeholder="Latitude" pattern="[0-9]+" />
+                    Longitude:<input type="text" name="a" placeholder="Longitude" pattern="[0-9]+" />
+                    Name:<input type="text" name="n" placeholder="Name" pattern="[A-Z]+" />
+                    Hashtag:<input type="hashtag" name="p" placeholder="Hashtag" maxlength=4/>
+                    I agree:<input type="checkbox" name="agree" value="yes" required />yes
+                    <input type="image" src="arrow_button.png" height="60" name="submit"
+                    alt="submit button" />
+                   
 
             </form>
             <!-- ############### VS1Lab 1a Form 1 End -->
