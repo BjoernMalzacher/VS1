@@ -32,10 +32,10 @@
                <fieldset>
                     <legend>Add a new GeoTag</legend>
                
-                    <label for="la">Latitude</label><input id="la" type="text" name="la" placeholder="49.01379" pattern="[0-9.]+" disabled/>
-                    <label for="lo">Longitude</label><input id="lo" type="text" name="lo" placeholder="8.390071" pattern="[0-9.]+" disabled/>
-                    <label for="n">Name</label><input id="n" type="text" name="n" placeholder="e.g. Central Berlin" pattern="[A-Z a-z .]+" maxlength="10" required/>
-                    <label for="h">Hashtag</label><input id="h" type="hashtag" name="h" placeholder="e.g. #ber" pattern="#[A-Za-z.]+" maxlength="11"/>
+                    <label for="la">Latitude: </label><input id="la" type="text" name="la" placeholder="49.01379" pattern="[0-9.]+" disabled/>
+                    <label for="lo">Longitude: </label><input id="lo" type="text" name="lo" placeholder="8.390071" pattern="[0-9.]+" disabled/>
+                    <label for="n">Name: </label><input id="n" type="text" name="n" placeholder="e.g. Central Berlin" pattern="[A-Z a-z .]+" maxlength="10" required/>
+                    <label for="h">Hashtag: </label><input id="h" type="hashtag" name="h" placeholder="e.g. #ber" pattern="#[A-Za-z.]+" maxlength="11"/>
                     <input type="submit" value="Add Tag"/>
                    
                 </fieldset>
@@ -51,6 +51,14 @@
             <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="post">
 
                 <!-- ... your code here ... -->
+                <fieldset>
+                    <legend>Search</legend>
+                    
+                    <label for="s">Search term or keywords: </label><input id="s" type="text" name="s" placeholder="e.g. Berlin" pattern="[0-9.]+" />
+                    
+                    <input type="submit" value="Search"/>
+                   
+                </fieldset>
 
             </form>
             <!-- ############### VS1Lab 1a Form 2 End -->
