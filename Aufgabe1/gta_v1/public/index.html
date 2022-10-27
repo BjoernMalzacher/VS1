@@ -27,13 +27,19 @@
 
             <!-- ############### VS1Lab 1a Form 1 Start -->
             <form id="tag-form" action="/tagging" method="post">
+                <fieldset> 
+                <legend>Add a new GeoTag:</legend>    
+                <label for="LatitudeId"> 
+                Latitude: </label>  <input id="LatitudeId" type="text" name"Latitude"  value="empty" pattern="[0-9.] +" , disabled  />
+                <label for="LongitudeId"> 
+                Longitude: </label> <input id="LongitudeId" type="text" name"Longitude" value="empty" pattern="[0-9.] + ", disabled />
+                <label for="NameId"> 
+                Name:</label> <input id="NameId" type="text" name"Name" placeholder="e.g. Central Berlin" pattern="[A-Za-z] + " required maxlength="10"/>
+                <label for="HashtagId"> 
+                Hashtag: </label> <input id="HashtagId" type="text" name"Hashtag" placeholder="e.g. #ber" pattern="#[A-Za-z#]+" maxlength="11"/> 
+                <input type="submit" value="Add Tag" />
+                </fieldset>
 
-                Latitude: <input type="text" name"Latitude" placeholder="49.01379" pattern="[0-9.] + " />
-                Longitude: <input type="text" name"Longitude" placeholder="8.390071" pattern="[0-9.] + " />
-
-
-                Name: <input type="text" name"Name" placeholder="e.g. Central Berlin" pattern="[A-Za-z] + " />
-                Hashtag: <input type="text" name"Hashtag" placeholder="e.g. #ber" pattern="[A-Za-z#]+" /> 
 
                 <!-- ... your code here ... --> 
 
@@ -47,7 +53,12 @@
 
             <!-- ############### VS1Lab 1a Form 2 Start -->
             <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="post">
-                Search: <input type="text" name"Search" placeholder="e.g. Berlin" pattern="[A-Za-z] + " />
+                <fieldset>
+                <legend>Search</legend>    
+                <label for="SearchId"> 
+                Search term or keywords: </label> <input id="SearchId" type="text" name"Search" placeholder="e.g. Berlin" pattern="[A-Za-z] + " />
+                <input type="submit" value="Search" />
+                </fieldset>
                 <!-- ... your code here ... -->
 
             </form>
