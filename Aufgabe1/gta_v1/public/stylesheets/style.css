@@ -110,27 +110,48 @@ a {
 /* ### TODO ### Styles for Header Component */
 
 /* ... your code here ... */
-
+header {
+  flex-direction: column;
+}
 
 /* ### TODO ### Styles for Main Component */
 
 /* ... your code here ... */
+main {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+}
+
 
 
 /* ### TODO ### Styles for Tagging component */
 
 /* ... your code here ... */
+main__tagging tagging {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;  
+}
 
 
 /* ### TODO ### Styles for Discovery component */
 
 /* ... your code here ... */
-
+discovery__search {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh; 
 
 /* ### TODO ### Styles for Footer Component */
 
 /* ... your code here ... */
-
+footer {
+  flex-direction: row;
+}
 
 /* ### TODO ### Media Queries */
 
