@@ -20,23 +20,24 @@
             <a href="#">About</a> | <a href="#">Help</a> | <a href="/">Home</a>
         </nav>
     </header>
-
+    
     <main class="main">
         <section class="main__tagging tagging">
             <h2>Tagging</h2>
 
             <!-- ############### VS1Lab 1a Form 1 Start -->
+            <div class="grid-container">
             <form id="tag-form" action="/tagging" method="post">
-                <Fieldset>
+                <Fieldset class="col-1" >
 
 
                     
                     <legend>Add a new GeoTag</legend>
-                    <label for="name_value">
+                    <label for="Latitute_value" class="" >
                         Latitute:</label>
                     <input type="text" , name="a" , id="Latitute_value" , value="empty"
                         pattern="^-?([0-8]?[0-9]|90)(\.[0-9]{1,10})$" , disabled> </input>
-                    <label for="name_value">
+                    <label for="Longitute_value">
                         Longitute:</label><input type="text" , name="a" , id="Longitute_value" ,
                         value="empty" , pattern="^-?([0-9]{1,2}|1[0-7][0-9]|180)(\.[0-9]{1,10})$" ,
                         disabled>
@@ -45,12 +46,13 @@
                         Name:</label>
                     <input type="text" , name="a" , id="name_value" , placeholder="e.g Fr*nce" , pattern="[A-Za-z#]+" ,
                         size="10"> </input>
-                    <label for="name_value">Hashtag:</label>
+                    <label for="hashtag_value">Hashtag:</label>
                     <input type="text" , name="a" , id="Hash_value" , placeholder="#Fr*nce" , pattern="#[A-Za-z*]+" ,
                         size="10" , required> </input>
                     <input type="submit" , value="Add Tag"></input>
                 </Fieldset>
             </form>
+        </div>
             <!-- ############### VS1Lab 1a Form 1 End -->
 
         </section>
