@@ -121,21 +121,16 @@ a {
   background-color: gray;
   gap: 41% ;
 } 
-
-
 .header__image{
   width: 100px;
   height: 100%;
-  float: left;
-  padding: 1%;
-   
+  padding: 1%; 
 }
 .header__title{
   width: 100px;
   height: 100%;
   align-self: center;
 }
-
 .header__navigation {
   width: 100px;
   height: 100%;
@@ -144,7 +139,6 @@ a {
   align-self: center;
  }
 .header__navigation a{
-
   height: 100%;
   display:  table-cell;
   float: left;
@@ -154,24 +148,76 @@ a {
 /* ### TODO ### Styles for Main Component */
 
 .main{
-  display: gird;
+  display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  grid-auto-rows: minmax(100px, auto);
+  grid-auto-rows: minmax(3, 1fr);
+
 
 }
 .tagging{
+  width: 100px;
+  grid-column:  1/3;
+  grid-row: 1/3;
   display: flex;
-  flex-direction: column;
-  column-gap: 100px;
+  flex-direction: column;  
+  padding: 15%;
+ 
+ 
+
  
 }
-.name_class{
+fieldset
+{
+  background-color:rgb(231, 231, 231);
+  max-width:500px;
+  padding:16px;	
+}
+.discovery{
+  grid-row: 1/3;
+  grid-column: 2/3;
   display: flex;
   flex-direction: column;
-  column-gap: 100px;
+  grid-template-columns: 2;
+  grid-auto-rows: 2;
+ 
+
+
+}
+.discovery__wrapper{
+  display: flex;
+}
+.discovery_search{
+   
+  
+  }
+  
+
+.discovery_taglist{
  
 }
+.discovery__results li{
+  background-color:rgb(231, 231, 231);
+  
+  max-width:500px;
+  padding:16px;
+  border: groove;
+  border-color: gray;
+  margin-bottom:10% ;
+  margin-top: 10%;
+  margin-right: 10%;
+  margin-left: 10%;
+  
+ 
+}
+
+.discovery__map{
+  margin-bottom:10% ;
+  margin-top: 10%;
+  margin-right: 10%;
+  margin-left: 10%;
+}
+
+
 
 /* ### TODO ### Styles for Tagging component */
 
