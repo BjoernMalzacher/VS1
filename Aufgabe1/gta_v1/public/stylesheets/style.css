@@ -47,8 +47,13 @@ a {
 /* ### TODO ### Styles for other HTML elements */
 
 /* ... your code here ... */
-
-
+.flex-grid{
+  display: flex;
+justify-content: space-between;
+}
+.flex-grid .col{
+  width: 30%;
+}
 /* Grid styles (no changes required) */
 
 .row {
@@ -112,6 +117,8 @@ a {
 /* ... your code here ... */
 header {
   flex-direction: column;
+  background-color: #efefef;
+  padding: 15px;
 }
 
 /* ### TODO ### Styles for Main Component */
@@ -129,30 +136,43 @@ main {
 /* ### TODO ### Styles for Tagging component */
 
 /* ... your code here ... */
-main__tagging tagging {
+col {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   display: flex;
   flex-direction: row;
   min-height: 100vh;  
+  color: var(--background-color);
+  color: var(--border-color);
 }
 
 
 /* ### TODO ### Styles for Discovery component */
 
 /* ... your code here ... */
-discovery__search {
+col2 {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   display: flex;
   flex-direction: row;
   min-height: 100vh; 
-
+  background-color: #efefef;
+}
 /* ### TODO ### Styles for Footer Component */
 
 /* ... your code here ... */
 footer {
   flex-direction: row;
+  background-color: #efefef;
+  padding: 15px;
 }
 
 /* ### TODO ### Media Queries */
 
 /* ... your code here ... */
+@media (max-width: 850px) {
+  main, .tagging, .discovery, .filter-form, .taglist, .tagmap {
+
+    display: flex;
+    flex-direction: column;
+
+    height: auto;
+    width: auto;
