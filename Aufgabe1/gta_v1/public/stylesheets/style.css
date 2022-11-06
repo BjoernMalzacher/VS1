@@ -146,22 +146,16 @@ label{
   width: 10%;
   margin: auto auto ;
 }
-.header__navigation {
-  width: 10%;
-  display: flex;
+.header__navigation{
+  margin-right: 2%;
   align-self: center;
  }
-
-.header__navigation a{
- padding: 0 10px 0 10px;
-}
 
 
 /* ### TODO ### Styles for Main Component */
 
 .main{
   margin-top: 2%;
-  margin-right: 10%;
 }
 
 /* ### TODO ### Styles for Tagging component */
@@ -205,8 +199,6 @@ label{
   margin-top: 2%;
   display: flex;
   flex-direction: column;
-  height: auto;
-  
 }
 
 
@@ -230,7 +222,7 @@ label{
 
 /* ### TODO ### Media Queries */
 
-@media (max-width: 500px) {
+@media (max-width: 810px) {
   main, .tagging,.tagging_field, .discovery, .discovery__results,.discovery__wrapper .filter-form, .discovery__wrapper, .discovery__map {
     margin-left: 0;
     display: flex;
