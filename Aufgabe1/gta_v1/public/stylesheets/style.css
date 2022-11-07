@@ -55,11 +55,11 @@ fieldset
 }
 input[type=text] {
   height: 30px;
-  margin-bottom: 5%;
+  margin-bottom: 10px;
   border-radius: 5px;
 }
 input[type=submit]{
-  margin-bottom: 5%;
+  margin-bottom: 10px;
   height: 30px;
   border-radius: 5px;
 }
@@ -67,7 +67,7 @@ input[type=submit]:hover{
   background-color:  var(--gray-color);
 }
 label{
-  margin-bottom: 5%;
+  margin-bottom: 10px;
   color: var(--gray-color);
 }
 
@@ -182,10 +182,9 @@ label{
   list-style-type: none;
   color: var(--link-color);
   padding:16px;
-  max-width: 220px;
   border: 1px solid var(--border-color);
-  margin-bottom:10%;
-  margin-top: 10%;
+  margin-top: 10px;
+  
 }
 .search_field{
   display: flex;
@@ -195,7 +194,6 @@ label{
   flex-direction: column;
 }
 .discovery__map{
-  max-width: fit-content;
   margin-top: 2%;
   display: flex;
   flex-direction: column;
@@ -223,16 +221,20 @@ label{
 /* ### TODO ### Media Queries */
 
 @media (max-width: 810px) {
-  main, .tagging,.tagging_field, .discovery, .discovery__results,.discovery__wrapper .filter-form, .discovery__wrapper, .discovery__map {
+  main, .tagging,.tagging_field, .discovery,.discovery__taglist, .discovery__results,.discovery__wrapper .filter-form, .discovery__wrapper, .discovery__map {
     margin-left: 0;
     display: flex;
     flex-direction: column;
-
     height: auto;
-    width: auto;
+    width: 100%;
+    
+    padding-left: 10px;
+      padding-top: 10px;
 
   }
   .discovery__map{
-    margin-bottom: 30%;
+    margin-bottom: 85px;
+    width: 100%;
+    
   }
 }
