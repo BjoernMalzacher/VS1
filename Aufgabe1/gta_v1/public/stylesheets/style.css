@@ -109,9 +109,29 @@ a {
 
 /* ### TODO ### Styles for Header Component */
 
-/* ... your code here ... */
+.header{
+  max-height: 150px;
 
-
+  background-color: var(--background-color);
+  border-bottom: 1px solid var(--border-color);
+}
+.header__image{
+  width: 100px;
+  align-self: center;
+}
+.header__title{
+  width: 10%;
+  margin: 0 auto;
+  align-self: center;
+}
+.header__navigation{
+  width: 10%;
+  margin: 0 auto;
+  align-self: center;
+}
+.header__navigation a{
+  padding:0 10px 0 10px;
+}
 /* ### TODO ### Styles for Main Component */
 
 /* ... your code here ... */
