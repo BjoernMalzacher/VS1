@@ -21,6 +21,7 @@ class LocationHelper {
      */
     get latitude() {
         return this.#latitude;
+        var i = 0;
     }
 
     #longitude = '';
