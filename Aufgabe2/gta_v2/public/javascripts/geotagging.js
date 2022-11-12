@@ -8,6 +8,7 @@
 // The console window must be opened explicitly in the browser.
 // Try to find this output in the browser...
 console.log("The geoTagging script is going to start...");
+updateLocation();
 
 /**
  * A class to help using the HTML5 Geolocation API.
@@ -21,7 +22,7 @@ class LocationHelper {
      */
     get latitude() {
         return this.#latitude;
-        var i = 0;
+        
     }
 
     #longitude = '';
@@ -103,7 +104,12 @@ class MapManager {
  * A function to retrieve the current location and update the page.
  * It is called once the page has been fully loaded.
  */
-// ... your code here ...
+function updateLocation(){
+    element = document.getElementById(discoveryResult);
+    liList = element.querySelectAll("li");
+     console.log(elem.outerHTML);
+
+}
 
 // Wait for the page to fully load its DOM content, then call updateLocation
 document.addEventListener("DOMContentLoaded", () => {
