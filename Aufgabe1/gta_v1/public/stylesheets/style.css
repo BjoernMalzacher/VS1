@@ -115,19 +115,20 @@ justify-content: space-between;
 /* ### TODO ### Styles for Header Component */
 
 /* ... your code here ... */
-header {
-  flex-direction: column;
+.header {
+  display: flex;
+  flex-direction: row;
   background-color: #efefef;
   padding: 15px;
+}
+.header__image{
+  width: 10%;
 }
 
 /* ### TODO ### Styles for Main Component */
 
 /* ... your code here ... */
 main {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  display: flex;
-  flex-direction: row;
   min-height: 100vh;
 }
 
@@ -136,25 +137,32 @@ main {
 /* ### TODO ### Styles for Tagging component */
 
 /* ... your code here ... */
-col {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.tagging {
   display: flex;
   flex-direction: row;
-  min-height: 100vh;  
-  color: var(--background-color);
-  color: var(--border-color);
+  min-height: 100vh; 
 }
 
 
 /* ### TODO ### Styles for Discovery component */
 
 /* ... your code here ... */
-col2 {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.discovery {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   min-height: 100vh; 
+}
+fieldset{
   background-color: #efefef;
+  display: flex;
+  flex-direction: column;
+}
+input[type=text]{
+  margin-bottom: 10%;
+}
+.discovery__results{
+  background-color: #efefef;
+  color: var(--link-color);
 }
 /* ### TODO ### Styles for Footer Component */
 
