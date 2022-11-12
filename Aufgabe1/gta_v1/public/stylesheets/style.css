@@ -221,7 +221,7 @@ label{
 /* ### TODO ### Media Queries */
 
 @media (max-width: 810px) {
-  main, .tagging,.tagging_field, .discovery,.discovery__taglist, .discovery__results,.discovery__wrapper .filter-form, .discovery__wrapper, .discovery__map {
+  main, .tagging,.tagging_field, .discovery,.discovery__taglist, .discovery__results,.discovery__wrapper .filter-form, .discovery__map {
     margin-left: 0;
     display: flex;
     flex-direction: column;
@@ -229,7 +229,7 @@ label{
     width: 100%;
     
     padding-left: 10px;
-      padding-top: 10px;
+    padding-right: 10px;
 
   }
   .discovery__map{
