@@ -221,7 +221,7 @@ label{
 /* ### TODO ### Media Queries */
 
 @media (max-width: 810px) {
-  main, .tagging,.tagging_field, .discovery,.discovery__taglist, .discovery__results, .filter-form, .discovery__map {
+  main, .tagging,.tagging_field, .discovery, .filter-form{
     display: flex;
     flex-direction: column;
     height: auto;
@@ -231,9 +231,22 @@ label{
     padding-right: 10px;
 
   }
-  .discovery__map{
-    margin-bottom: 85px;
+  .discovery__wrapper, .discovery__taglist, .discovery__results{
+    display: flex;
+    flex-direction: column;
+    height: auto;
     width: 100%;
     
+  }
+  .tagging, .discovery{
+    margin: 0%;
+  }
+  .discovery__map{
+    margin-bottom: 150px;
+    width: 100%;
+    
+  }
+  .search_field{
+    display: block;
   }
 }
