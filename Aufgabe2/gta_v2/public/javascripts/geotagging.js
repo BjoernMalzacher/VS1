@@ -8,7 +8,6 @@
 // The console window must be opened explicitly in the browser.
 // Try to find this output in the browser...
 console.log("The geoTagging script is going to start...");
-updateLocation();
 
 /**
  * A class to help using the HTML5 Geolocation API.
@@ -105,9 +104,9 @@ class MapManager {
  * It is called once the page has been fully loaded.
  */
 function updateLocation(){
-    element = document.getElementById(discoveryResult);
-    liList = element.querySelectAll("li");
-     console.log(elem.outerHTML);
+    //element = Document.getElementById(discoveryResult);
+    //liList = element.querySelectAll("li");
+    console.log("hallo");
 
 }
 
