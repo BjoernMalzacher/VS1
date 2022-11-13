@@ -104,13 +104,24 @@ class MapManager {
  * It is called once the page has been fully loaded.
  */
 function updateLocation(){
-    //element = Document.getElementById(discoveryResult);
-    //liList = element.querySelectAll("li");
-    console.log("hallo");
-
+    
+    res = document.getElementById("discoveryResults");
+    
+    list =res.QuerySelectorAll("li");
+    list.innerHTML ="<li>("+geolocation.findLocation.latitude+")</li>";
+    alert(res.innerHTML);
 }
+
+
+document.getElementById("button").addEventListener("click", ()=>{
+updateLocation(); 
+
+});
+
+
 
 // Wait for the page to fully load its DOM content, then call updateLocation
 document.addEventListener("DOMContentLoaded", () => {
     alert("Please change the script 'geotagging.js'");
+   
 });

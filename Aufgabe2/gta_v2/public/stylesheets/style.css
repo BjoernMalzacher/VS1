@@ -194,6 +194,7 @@ label{
 }
 .discovery__map{
   margin-top: 20px;
+  margin-left: 20px;
   display: flex;
   flex-direction: column;
   width: 480px;
@@ -236,12 +237,16 @@ label{
     margin: 0%;
 
   }
+  
   .discovery__wrapper,.discovery__taglist{
     display: flex;
     flex-direction: column;
     height: auto;
     width: 100%;
    
+  }
+  .search_field{
+    display: block;
   }
  
   .discovery__map{
