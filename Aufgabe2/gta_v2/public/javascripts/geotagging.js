@@ -71,6 +71,7 @@ class MapManager {
      * @param {string} apiKey Your MapQuest API Key
      */
     constructor(apiKey) {
+        
         this.#apiKey = apiKey;
     }
 
@@ -104,24 +105,36 @@ class MapManager {
  * It is called once the page has been fully loaded.
  */
 function updateLocation(){
+    try {
+        LocationHelper.findLocation(overwriteLocation);
     
-    res = document.getElementById("discoveryResults");
-    
-    list =res.QuerySelectorAll("li");
-    list.innerHTML ="<li>("+geolocation.findLocation.latitude+")</li>";
-    alert(res.innerHTML);
+    } catch (error) {
+        alert(error.message);    
+    } 
 }
+function overwriteLocation(helper){
+    
 
-
-document.getElementById("button").addEventListener("click", ()=>{
-updateLocation(); 
-
-});
+    document.getElementById("Latitute_value").value = helper.latitude;
+    document.getElementById("Longitute_value").value = helper.longitude;
+    document.getElementById("latHidden").value = helper.latitude;
+    document.getElementById("longHidden").value = helper.longitude;
+    
+    mManager = new MapManager("GNQ8FCI311cYDR2EQ9UtoCZGidMfvBIK");
+    
+    mpQuestURL = mManager.getMapUrl(helper.latitude, helper.longitude);
+    alert("hallo");
+    document.getElementById("mapView").src = mpQuestURL;
+    
+    
+    list = document.getElementById("discoveryResults").querySelectorAll("li");
+    alert(list.item(1).innerHTML);
+}   
 
 
 
 // Wait for the page to fully load its DOM content, then call updateLocation
 document.addEventListener("DOMContentLoaded", () => {
-    alert("Please change the script 'geotagging.js'");
-   
+    updateLocation();       
 });
+
