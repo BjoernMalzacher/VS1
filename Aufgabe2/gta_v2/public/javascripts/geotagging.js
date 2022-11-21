@@ -39,7 +39,7 @@ class LocationHelper {
         const geoLocationApi = navigator.geolocation;
 
         if (!geoLocationApi) {
-            throw new Error("The GeoLocation API is unavailable.");
+            throw new Error("The GeoLocation API is unavailable."); //FRAGEN!!!!!!!
         }
 
         // Call to the HTML5 geolocation API.
@@ -103,10 +103,18 @@ class MapManager {
  * It is called once the page has been fully loaded.
  */
 // ... your code here ...
-function updateLocation{
-    findLocation;
+function updateLocation(){
+    LocationHelper.findLocation(neu);
+}
+function neu(parameter){
+    document.getElementById("Latitute_value").value = parameter.latitude;
+    document.getElementById("Longitute_value").value = parameter.longitude;
+    document.getElementById("latitudehidden").value = parameter.latitude;
+    document.getElementById("longitudehidden").value = parameter.longitude;
+    variable = new MapManager("tBd00F6iMGlgF0aXpVy6AetyDM9vo50A");
+    document.getElementById("mapView").src = variable.getMapUrl(parameter.latitude, parameter.longitude);
 }
 // Wait for the page to fully load its DOM content, then call updateLocation
 document.addEventListener("DOMContentLoaded", () => {
-    alert("Please change the script 'geotagging.js'");
+    updateLocation();
 });
