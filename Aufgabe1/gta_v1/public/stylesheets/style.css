@@ -1,0 +1,252 @@
+/*
+  File origin: VS1LAB A1b  
+  CSS style is BEM. Classes used for CSS, IDs for JavaScript querying (future use).
+  CSS variables used for clarity and themability (e.g. through SSR). 
+  Inherited box sizing used for ease of including 3rd party content-box components.
+*/
+
+/* Global styling */
+
+html {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  
+  /* This approach prevents issues with 3rd party content-box components */
+  box-sizing: inherit;
+}
+
+
+/* Variables (example: see declaration for "a" below) */
+
+:root {
+  --link-color: #00B7FF;
+  --background-color: #efefef;
+  --border-color: #cdcdcd;
+  --gray-color: #666;
+}
+
+
+/* HTML element styles */
+
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+a {
+  color: var(--link-color);
+}
+
+/* ### TODO ### Styles for other HTML elements */
+
+fieldset
+{
+  padding:16px;	
+  border-color: var(--border-color);
+  border-radius: 4px;
+  
+}
+input[type=text] {
+  height: 30px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+input[type=submit]{
+  margin-bottom: 10px;
+  height: 30px;
+  border-radius: 5px;
+}
+input[type=submit]:hover{
+  background-color:  var(--gray-color);
+}
+label{
+  margin-bottom: 10px;
+  color: var(--gray-color);
+}
+
+/* Grid styles (no changes required) */
+
+.row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.col-1 {
+  width: calc(8.33% - 1rem);
+}
+
+.col-2 {
+  width: calc(16.66% - 1rem);
+}
+
+.col-3 {
+  width: calc(25% - 1rem);
+}
+
+.col-4 {
+  width: calc(33.33% - 1rem);
+}
+
+.col-5 {
+  width: calc(41.66% - 1rem);
+}
+
+.col-6 {
+  width: calc(50% - 1rem);
+}
+
+.col-7 {
+  width: calc(58.33% - 1rem);
+}
+
+.col-8 {
+  width: calc(66.66% - 1rem);
+}
+
+.col-9 {
+  width: calc(75% - 1rem);
+}
+
+.col-10 {
+  width: calc(83.33% - 1rem);
+}
+
+.col-11 {
+  width: calc(91.66% - 1rem);
+}
+
+.col-12 {
+  width: calc(100% - 1rem);
+ 
+}
+
+
+/* ### TODO ### Styles for Header Component */
+
+.header{ 
+  max-height: 150px;
+  background-color:var(--background-color);
+  border-bottom: 1px solid var(--border-color);
+} 
+.header__image{
+  width: 80px;
+  align-self: center;
+  margin-left: 3%;
+}
+.header__title{
+  width: 10%;
+  margin: auto auto ;
+}
+.header__navigation{
+  margin-right: 2%;
+  align-self: center;
+ }
+
+
+/* ### TODO ### Styles for Main Component */
+
+.main{
+  margin-top: 2%;
+}
+
+/* ### TODO ### Styles for Tagging component */
+
+.tagging{
+  margin-left: 10%;
+}
+.tagging_field{
+  display: flex;
+  flex-direction: column; 
+}
+
+/* ### TODO ### Styles for Discovery component */
+.discovery{
+  display: flex;
+  flex-direction: column;
+  margin-left: 3%;
+  margin-right: 10%;
+ 
+}
+
+.discovery__results li {
+  background-color: var(--background-color);
+  list-style-type: none;
+  color: var(--link-color);
+  padding:16px;
+  border: 1px solid var(--border-color);
+  margin-top: 10px;
+  
+}
+.search_field{
+  display: flex;
+}
+.input_container{
+  display: flex;
+  flex-direction: column;
+}
+.discovery__map{
+  margin-top: 2%;
+  display: flex;
+  flex-direction: column;
+  width: 480px;
+}
+
+
+/* ### TODO ### Styles for Footer Component */
+.footer{
+  position: fixed;
+  bottom: 0%;
+  width: 100%;
+  height: 15%;
+  background-color: var(--background-color);
+  border-top: 1px solid var(--border-color) ;
+ 
+}
+.footer span{
+  position: relative;
+  left: 5%;
+  top:50%;
+}
+
+
+
+/* ### TODO ### Media Queries */
+
+@media (max-width: 810px) {
+  main, .tagging,.tagging_field, .discovery, .filter-form{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    
+    padding-left: 10px;
+    padding-right: 10px;
+
+  }
+  .discovery__wrapper, .discovery__taglist, .discovery__results{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    
+  }
+  .tagging, .discovery{
+    margin: 0%;
+  }
+  .discovery__map{
+    margin-bottom: 150px;
+    width: 100%;
+    
+  }
+  .search_field{
+    display: block;
+  }
+}

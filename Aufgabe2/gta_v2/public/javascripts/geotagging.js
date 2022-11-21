@@ -103,7 +103,9 @@ class MapManager {
  * It is called once the page has been fully loaded.
  */
 // ... your code here ...
-
+function updateLocation{
+    findLocation;
+}
 // Wait for the page to fully load its DOM content, then call updateLocation
 document.addEventListener("DOMContentLoaded", () => {
     alert("Please change the script 'geotagging.js'");
