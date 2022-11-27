@@ -123,12 +123,8 @@ function overwriteLocation(helper){
     mManager = new MapManager("GNQ8FCI311cYDR2EQ9UtoCZGidMfvBIK");
     
     mpQuestURL = mManager.getMapUrl(helper.latitude, helper.longitude);
-    alert("hallo");
+  
     document.getElementById("mapView").src = mpQuestURL;
-    
-    
-    list = document.getElementById("discoveryResults").querySelectorAll("li");
-    alert(list.item(1).innerHTML);
 }   
 
 
