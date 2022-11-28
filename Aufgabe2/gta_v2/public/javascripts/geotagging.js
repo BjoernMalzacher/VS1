@@ -113,22 +113,13 @@ function updateLocation(){
     } 
 }
 function overwriteLocation(helper){
-    
-
-    document.getElementById("Latitute_value").value = helper.latitude;
-    document.getElementById("Longitute_value").value = helper.longitude;
-    document.getElementById("latHidden").value = helper.latitude;
-    document.getElementById("longHidden").value = helper.longitude;
-    
+    document.getElementById("Latitute_value")?.setAttribute("value",helper.latitude);
+    document.getElementById("Longitute_value")?.setAttribute("value",helper.longitude);
+    document.getElementById("latHidden")?.setAttribute("value", helper.latitude);
+    document.getElementById("longHidden")?.setAttribute("Value", helper.longitude);
     mManager = new MapManager("GNQ8FCI311cYDR2EQ9UtoCZGidMfvBIK");
-    
     mpQuestURL = mManager.getMapUrl(helper.latitude, helper.longitude);
-    alert("hallo");
-    document.getElementById("mapView").src = mpQuestURL;
-    
-    
-    list = document.getElementById("discoveryResults").querySelectorAll("li");
-    alert(list.item(1).innerHTML);
+    document.getElementById("mapView")?.setAttribute("src", mpQuestURL);
 }   
 
 
