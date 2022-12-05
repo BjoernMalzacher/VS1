@@ -39,7 +39,7 @@ class LocationHelper {
         const geoLocationApi = navigator.geolocation;
 
         if (!geoLocationApi) {
-            throw new Error("The GeoLocation API is unavailable."); //FRAGEN!!!!!!!
+            throw new Error("The GeoLocation API is unavailable."); 
         }
 
         // Call to the HTML5 geolocation API.
