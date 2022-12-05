@@ -41,8 +41,11 @@ app.use(express.urlencoded({ extended: false }));
  * Configure path for static content.
  * Test the result in a browser here: 'http://localhost:3000/'.
  */
+app.use(express.static(__dirname + 'Aufgabe3\gta_v3\public'));
+app.get('/', (req, res) =>{
 
-// TODO: ... your code here ...
+  res.render(path.join(__dirname, './views/index.ejs'));
+});
 
 // Set dedicated script for routing
 app.use('/', indexRouter);

@@ -1,5 +1,8 @@
 // File origin: VS1LAB A3
 
+const GeoTag = require("./geotag");
+const GeoTagExamples = require("./geotag-examples");
+
 /**
  * This script is a template for exercise VS1lab/Aufgabe3
  * Complete all TODOs in the code documentation.
@@ -24,8 +27,66 @@
  * - Keyword matching should include partial matches from name or hashtag fields. 
  */
 class InMemoryGeoTagStore{
+    #taglist = [];
 
-    // TODO: ... your code here ...
+    get taglist(){
+        return this.#taglist;
+    }
+    InMemoryGeoTagStore(){
+        examples = new GeoTagExamples();        
+        examples.forEach(element => {
+            tag = new geoTag(element[0], element[1],element[2],element[3]);
+            addGeoTag(tag);
+          });
+
+    }
+     addGeoTag(geoTag) {
+        taglist.push(geoTag);
+        
+    
+    }
+    removeGeoTaG(geoTag) {
+        newList0 =[]; 
+        newList1 =[];
+        list = 0;
+        taglist.array.forEach(element => {
+            if(geoTag == element){
+                if(!list){
+                    newList0.push(element);
+                }else{
+                    newList1.push(element);
+                }
+            }else{
+                list = 1;
+            }
+
+            
+          });
+          taglist = newList0.concat(newList1);
+
+    }    
+    getNearbyGeoTags(location, radius) {
+        newList = [];
+        taglist.forEach(element=>{
+            distance = Math.sqrt(Math.pow(element.longitude-location.longitude,2)+Math.pow(element.latitude-location.latitude,2));
+            if(distance<= radius){
+                newList.push(element);
+            }
+        });
+        return newList;
+        
+    }  
+    searchNearbyGeoTags(location, radius, keyword) {
+        newList = [];
+        list = getNearbyGeoTags(location,radius); 
+        list.forEach(element=>{
+            if(element.name== keyword || element.hashtag == keyword){
+                newList.push = element;
+            }
+        });
+        return newList;
+    }
+
 
 }
 
