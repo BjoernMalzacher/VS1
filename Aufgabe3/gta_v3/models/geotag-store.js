@@ -26,6 +26,53 @@
 class InMemoryGeoTagStore{
 
     // TODO: ... your code here ...
+    #geotags=[];
+    addGeoTag(GeoTag){
+        this.#geotags.push(GeoTag);
+    }
+    removeGeoTag(GeoTag){
+        array1=[];
+        array2=[];
+        second =0;
+        this.#geotags.array.forEach(element => {
+            if(element==GeoTag){
+                second=1;
+            }else{
+                if(second==0){
+                    array1.push(element);
+                }else{
+                    array2.push(element);
+                }
+            }
+        });
+        this.#geotags=array1.concat(array2);
+    }
+    getNearbyGeoTags(location,radius){
+        okay=[];
+        this.#geotags.array.forEach(element => {
+            distance=Math.sqrt(Math.pow(element.longitude-location.longitude,2)+Math.pow(element.latitude-location.latitude,2));
+            if(distance<=radius){
+                okay.push(element);
+            }
+        });
+        return okay;
+    }
+    searchNearbyGeoTags(location,radius,keyword){
+        nearbygeotags=getNearbyGeoTags(location,radius);
+        allesklar=[];
+        nearbygeotags.array.forEach(element => {
+            if(element.name==keyword||element.hashtag==keyword){
+                allesklar.push(element);
+            }
+        });
+        return allesklar;
+    }
+    InMemoryGeoTagStore(){
+        list=GeoTagExamples.tagList;
+        list.array.forEach(element => {
+            this.#geotags.push(new GeoTag(element[1],element[2],element[0],element[3]));
+        });
+    }
 
 }
 
