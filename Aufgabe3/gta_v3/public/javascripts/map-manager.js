@@ -14,7 +14,6 @@ class MapManager {
     constructor(apiKey) {
         this.#apiKey = apiKey;
     }
-
     /**
      * Generate a MapQuest image URL for the specified parameters
      * @param {number} latitude The map center latitude
@@ -27,8 +26,8 @@ class MapManager {
         if (!this.#apiKey) {
             console.log("No API key provided.");
             return "images/mapview.jpg";
+            
         }
-
         let tagList = `${latitude},${longitude}|marker-start`;
         tagList += tags.reduce((acc, tag) => `${acc}||${tag.latitude},${tag.longitude}|flag-${tag.name}`, "");
 

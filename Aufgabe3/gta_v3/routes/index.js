@@ -9,10 +9,9 @@
 /**
  * Define module dependencies.
  */
-
+const parser = require('body-parser');
 const express = require('express');
 const router = express.Router();
-
 /**
  * The module "geotag" exports a class GeoTagStore. 
  * It represents geotags.
@@ -21,7 +20,7 @@ const router = express.Router();
  */
 // eslint-disable-next-line no-unused-vars
 const GeoTag = require('../models/geotag');
-
+router.use(parser.urlencoded({extended: true }));
 /**
  * The module "geotag-store" exports a class GeoTagStore. 
  * It provides an in-memory store for geotag objects.
@@ -39,10 +38,14 @@ const GeoTagStore = require('../models/geotag-store');
  *
  * As response, the ejs-template is rendered without geotag objects.
  */
-
+var tagStore = new GeoTagStore();
 // TODO: extend the following route example if necessary
 router.get('/', (req, res) => {
-  res.render('index', { taglist: [] })
+  res.render('index', { 
+    taglist: tagStore.getNearbyGeoTags(),
+    taglist_json: JSON.stringify(tagStore.getNearbyGeoTags()),
+    latitude : "", 
+    longitude : ""});
 });
 
 /**
@@ -59,9 +62,23 @@ router.get('/', (req, res) => {
  * To this end, "GeoTagStore" provides a method to search geotags 
  * by radius around a given location.
  */
-
-// TODO: ... your code here ...
-
+router.post('/tagging', (req, res) => {
+  let name = req.body.name;
+  let lat = req.body.latitude;
+  let long = req.body.longitude;
+  let hash = req.body.hashtag;  
+  console.log(hash, "hallo welt");
+  console.log("boody :" , req.body);
+  geotag = new GeoTag(name, lat, long ,hash);
+  tagStore.addGeoTag(geotag);
+  let neartags = tagStore.getNearbyGeoTags(geotag, 1);
+  res.render("index", {
+    taglist: neartags,
+    latitude: lat,
+    longitude: long,
+    taglist_json: JSON.stringify(neartags)
+  });
+});
 /**
  * Route '/discovery' for HTTP 'POST' requests.
  * (http://expressjs.com/de/4x/api.html#app.post.method)
@@ -78,6 +95,8 @@ router.get('/', (req, res) => {
  * by radius and keyword.
  */
 
-// TODO: ... your code here ...
+router.get('/discovery', (req, res) => {
+  console.log("nein");
+});
 
 module.exports = router;

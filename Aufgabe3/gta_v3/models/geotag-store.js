@@ -29,19 +29,16 @@ const GeoTagExamples = require("./geotag-examples");
 class InMemoryGeoTagStore{
     #taglist = [];
 
-    get taglist(){
-        return this.#taglist;
-    }
-    InMemoryGeoTagStore(){
-        examples = new GeoTagExamples();        
+    constructor(){
+        let examples = GeoTagExamples.tagList;     
         examples.forEach(element => {
-            tag = new geoTag(element[0], element[1],element[2],element[3]);
-            addGeoTag(tag);
+            let tag = new GeoTag(element[0], element[1],element[2],element[3]);
+            this.#taglist.push(tag);
           });
 
     }
-     addGeoTag(geoTag) {
-        taglist.push(geoTag);
+    addGeoTag(geoTag) {
+        this.#taglist.push(geoTag);
         
     
     }
@@ -49,7 +46,7 @@ class InMemoryGeoTagStore{
         newList0 =[]; 
         newList1 =[];
         list = 0;
-        taglist.array.forEach(element => {
+        this.#taglist.array.forEach(element => {
             if(geoTag == element){
                 if(!list){
                     newList0.push(element);
@@ -62,13 +59,13 @@ class InMemoryGeoTagStore{
 
             
           });
-          taglist = newList0.concat(newList1);
+          this.#taglist = newList0.concat(newList1);
 
     }    
     getNearbyGeoTags(location, radius) {
-        newList = [];
-        taglist.forEach(element=>{
-            distance = Math.sqrt(Math.pow(element.longitude-location.longitude,2)+Math.pow(element.latitude-location.latitude,2));
+        var newList = [];
+        this.#taglist.forEach(element=>{
+            let distance = Math.sqrt(Math.pow(element.longitude-location.longitude,2)+Math.pow(element.latitude-location.latitude,2));
             if(distance<= radius){
                 newList.push(element);
             }
@@ -81,7 +78,7 @@ class InMemoryGeoTagStore{
         list = getNearbyGeoTags(location,radius); 
         list.forEach(element=>{
             if(element.name== keyword || element.hashtag == keyword){
-                newList.push = element;
+                newList.push(element);
             }
         });
         return newList;
