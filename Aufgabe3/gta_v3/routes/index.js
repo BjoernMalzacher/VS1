@@ -21,6 +21,7 @@ const router = express.Router();
 // eslint-disable-next-line no-unused-vars
 const GeoTag = require('../models/geotag');
 router.use(parser.urlencoded({extended: true }));
+router.use(express.json());
 /**
  * The module "geotag-store" exports a class GeoTagStore. 
  * It provides an in-memory store for geotag objects.
@@ -42,8 +43,8 @@ var tagStore = new GeoTagStore();
 // TODO: extend the following route example if necessary
 router.get('/', (req, res) => {
   res.render('index', { 
-    taglist: tagStore.getNearbyGeoTags(),
-    taglist_json: JSON.stringify(tagStore.getNearbyGeoTags()),
+    taglist: [],
+    taglist_json: "",
     latitude : "", 
     longitude : ""});
 });
@@ -67,8 +68,6 @@ router.post('/tagging', (req, res) => {
   let lat = req.body.latitude;
   let long = req.body.longitude;
   let hash = req.body.hashtag;  
-  console.log(hash, "hallo welt");
-  console.log("boody :" , req.body);
   geotag = new GeoTag(name, lat, long ,hash);
   tagStore.addGeoTag(geotag);
   let neartags = tagStore.getNearbyGeoTags(geotag, 1);
@@ -95,8 +94,19 @@ router.post('/tagging', (req, res) => {
  * by radius and keyword.
  */
 
-router.get('/discovery', (req, res) => {
-  console.log("nein");
+router.post('/discovery', (req, res) => {  
+  let searchvalue = req.body.Search;
+  let lat = req.body.lathidden; 
+  let long = req.body.longhidden;
+  geotag = new GeoTag("", lat, long, "");
+  list = tagStore.searchNearbyGeoTags(geotag, 1,searchvalue );
+  console.log(req.body);
+  res.render("index", {
+    taglist: list ,
+    latitude: lat,
+    longitude:long,
+    taglist_json: JSON.stringify(list)
+  });
 });
 
 module.exports = router;

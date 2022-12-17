@@ -37,22 +37,24 @@
             
                     
                     <label for="Latitute_value" class="lat" >
-                        Latitute:</label>
-                    <input type="text" , name="latitude"  id="Latitute_value" value="49.01379"
-                        pattern="^-?([0-8]?[0-9]|90)(\.[0-9]{1,10})$" class="lat_input" disabled> </input>
-                    <label for="Longitute_value" class="long">
-                        Longitute:</label><input type="text"  name="longitude" class="long_input" id="Longitute_value"
-                        value="8.404435" pattern="^-?([0-9]{1,2}|1[0-7][0-9]|180)(\.[0-9]{1,10})$"
-                        disabled>
-                    </input>
+                        Latitude:</label>
+                    <input type="text" , name="latitude"  id="Latitute_value" value="<%= latitude %>"
+                        pattern="^-?([0-8]?[0-9]|90)(\.[0-9]{1,10})$" class="lat_input" readonly> </input>
+                    
+                        <label for="Longitute_value" class="long">
+                        Longitude:</label><input type="text"  name="longitude" class="long_input" id="Longitute_value"
+                        value="<%= longitude %>" pattern="^-?([0-9]{1,2}|1[0-7][0-9]|180)(\.[0-9]{1,10})$"
+                        readonly>
+                    
                     <label for="name_value" class="name">
                         Name:</label>
                     <input type="text" name="name" id="name_value" class="name_input" placeholder="e.g Central Berlin " pattern="[A-Za-z#]+"
-                        size="10" required> </input>
+                        size="10" required>
+                    
                     <label for="hashtag_value" class="hash">Hashtag:</label>
                     <input type="text" name="hashtag" id="Hash_id" class="hash_input" placeholder="#ber" pattern="#[A-Za-z*]+"
-                        size="10"> </input>
-                    <input type="submit" class="submit_input" value="Add Tag"></input>
+                        size="10"> 
+                    <input type="submit" class="submit_input" value="Add Tag">
        
                 </Fieldset>
             </form>
@@ -70,12 +72,14 @@
                 <fieldset class="search_field">
                     <legend>Search</legend>
                     <div class="input_container">
-                    <label for="search_value" class="search">Search term or keyword:</label> <input type="text" class="search_input" name="a" , id="search_value"
-                        placeholder="Search"> </input>
+                    <label for="search_value" class="search">Search term or keyword:</label> 
+                    <input type="text" class="search_input" name="Search" , id="search_value"
+                        placeholder="Search">
+                    <input type="hidden" class="lathidden" name="lat_hidden" , id="latHidden">
+                    <input type="hidden" class="longhidden" name="long_hidden" , id="longHidden">
+
                     <input type="submit" class="search_submit" , value="Search">
                     </div>
-                    <input type="Text" id="latHidden" hidden>
-                    <input type="Text" id="longHidden" hidden>
                 </fieldset>
             </form>
        

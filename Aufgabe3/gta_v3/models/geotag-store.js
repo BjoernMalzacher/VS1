@@ -65,6 +65,7 @@ class InMemoryGeoTagStore{
     getNearbyGeoTags(location, radius) {
         var newList = [];
         this.#taglist.forEach(element=>{
+            
             let distance = Math.sqrt(Math.pow(element.longitude-location.longitude,2)+Math.pow(element.latitude-location.latitude,2));
             if(distance<= radius){
                 newList.push(element);
@@ -74,13 +75,9 @@ class InMemoryGeoTagStore{
         
     }  
     searchNearbyGeoTags(location, radius, keyword) {
-        newList = [];
-        list = getNearbyGeoTags(location,radius); 
-        list.forEach(element=>{
-            if(element.name== keyword || element.hashtag == keyword){
-                newList.push(element);
-            }
-        });
+        var newList = [];
+        var list = this.getNearbyGeoTags(location,radius); 
+        
         return newList;
     }
 
