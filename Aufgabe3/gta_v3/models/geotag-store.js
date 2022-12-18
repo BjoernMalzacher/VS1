@@ -69,6 +69,7 @@ class InMemoryGeoTagStore{
             let distance = Math.sqrt(Math.pow(element.longitude-location.longitude,2)+Math.pow(element.latitude-location.latitude,2));
             if(distance<= radius){
                 newList.push(element);
+            
             }
         });
         return newList;
@@ -77,10 +78,16 @@ class InMemoryGeoTagStore{
     searchNearbyGeoTags(location, radius, keyword) {
         var newList = [];
         var list = this.getNearbyGeoTags(location,radius); 
-        
+        list.forEach(element => {
+          let el_name =element.name.toLowerCase();
+          let el_hash = element.hashtag.toLowerCase();
+          let key_word = keyword.toLowerCase(); 
+            if(el_name.includes(keyword.toLowerCase())||el_hash.includes(keyword.toLowerCase())){
+                newList.push(element);
+            }
+        }); 
         return newList;
     }
-
 
 }
 

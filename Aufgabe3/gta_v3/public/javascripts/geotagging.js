@@ -29,12 +29,18 @@ function updateLocation(){
 }
 function createMap(lat, long){
     mManager = new MapManager("GNQ8FCI311cYDR2EQ9UtoCZGidMfvBIK");
+    let json_list =  document.getElementById("mapView").getAttribute("data-tags");
+   //let json_list= $("#mapView").data("tags"); 
+   if(!json_list){
+    json_list =[];
+   }
+   console.log( json_list+"++++++   ");
     mpQuestURL = mManager.getMapUrl(lat, long);
     document.getElementById("mapView")?.setAttribute("src", mpQuestURL);
 }
 function overwriteLocation(helper){
-        document.getElementById("Latitute_value")?.setAttribute("value",helper.latitude);
-        document.getElementById("Longitute_value")?.setAttribute("value",helper.longitude);
+        document.getElementById("Latitude_value")?.setAttribute("value",helper.latitude);
+        document.getElementById("Longitude_value")?.setAttribute("value",helper.longitude);
         document.getElementById("latHidden")?.setAttribute("value", helper.latitude);
         document.getElementById("longHidden")?.setAttribute("Value", helper.longitude);
         createMap(helper.latitude, helper.longitude);

@@ -96,11 +96,11 @@ router.post('/tagging', (req, res) => {
 
 router.post('/discovery', (req, res) => {  
   let searchvalue = req.body.Search;
-  let lat = req.body.lathidden; 
-  let long = req.body.longhidden;
-  geotag = new GeoTag("", lat, long, "");
-  list = tagStore.searchNearbyGeoTags(geotag, 1,searchvalue );
-  console.log(req.body);
+  let lat = req.body.lat_hidden; 
+  let long = req.body.long_hidden;
+
+  geotag = new GeoTag("none", lat, long, "none");
+  list = tagStore.searchNearbyGeoTags(geotag, 1,searchvalue);
   res.render("index", {
     taglist: list ,
     latitude: lat,
