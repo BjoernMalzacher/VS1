@@ -1,5 +1,8 @@
 // File origin: VS1LAB A3
 
+const GeoTag = require("./geotag");
+const GeoTagExamples = require("./geotag-examples");
+
 /**
  * This script is a template for exercise VS1lab/Aufgabe3
  * Complete all TODOs in the code documentation.
@@ -24,54 +27,66 @@
  * - Keyword matching should include partial matches from name or hashtag fields. 
  */
 class InMemoryGeoTagStore{
+    #taglist = [];
 
-    // TODO: ... your code here ...
-    #geotags=[];
-    addGeoTag(GeoTag){
-        this.#geotags.push(GeoTag);
+    constructor(){
+        let examples = GeoTagExamples.tagList;     
+        examples.forEach(element => {
+            let tag = new GeoTag(element[0], element[1],element[2],element[3]);
+            this.#taglist.push(tag);
+          });
+
     }
-    removeGeoTag(GeoTag){
-        array1=[];
-        array2=[];
-        second =0;
-        this.#geotags.array.forEach(element => {
-            if(element==GeoTag){
-                second=1;
-            }else{
-                if(second==0){
-                    array1.push(element);
+    addGeoTag(geoTag) {
+        this.#taglist.push(geoTag);
+        
+    
+    }
+    removeGeoTaG(geoTag) {
+        newList0 =[]; 
+        newList1 =[];
+        list = 0;
+        this.#taglist.array.forEach(element => {
+            if(geoTag == element){
+                if(!list){
+                    newList0.push(element);
                 }else{
-                    array2.push(element);
+                    newList1.push(element);
                 }
+            }else{
+                list = 1;
+            }
+
+            
+          });
+          this.#taglist = newList0.concat(newList1);
+
+    }    
+    getNearbyGeoTags(location, radius) {
+        var newList = [];
+        this.#taglist.forEach(element=>{
+            
+            let distance = Math.sqrt(Math.pow(element.longitude-location.longitude,2)+Math.pow(element.latitude-location.latitude,2));
+            if(distance<= radius){
+                newList.push(element);
+            
             }
         });
-        this.#geotags=array1.concat(array2);
-    }
-    getNearbyGeoTags(location,radius){
-        okay=[];
-        this.#geotags.array.forEach(element => {
-            distance=Math.sqrt(Math.pow(element.longitude-location.longitude,2)+Math.pow(element.latitude-location.latitude,2));
-            if(distance<=radius){
-                okay.push(element);
+        return newList;
+        
+    }  
+    searchNearbyGeoTags(location, radius, keyword) {
+        var newList = [];
+        var list = this.getNearbyGeoTags(location,radius); 
+        list.forEach(element => {
+          let el_name =element.name.toLowerCase();
+          let el_hash = element.hashtag.toLowerCase();
+          let key_word = keyword.toLowerCase(); 
+            if(el_name.includes(keyword.toLowerCase())||el_hash.includes(keyword.toLowerCase())){
+                newList.push(element);
             }
-        });
-        return okay;
-    }
-    searchNearbyGeoTags(location,radius,keyword){
-        nearbygeotags=getNearbyGeoTags(location,radius);
-        allesklar=[];
-        nearbygeotags.array.forEach(element => {
-            if(element.name==keyword||element.hashtag==keyword){
-                allesklar.push(element);
-            }
-        });
-        return allesklar;
-    }
-    InMemoryGeoTagStore(){
-        list=GeoTagExamples.tagList;
-        list.array.forEach(element => {
-            this.#geotags.push(new GeoTag(element[1],element[2],element[0],element[3]));
-        });
+        }); 
+        return newList;
     }
 
 }
