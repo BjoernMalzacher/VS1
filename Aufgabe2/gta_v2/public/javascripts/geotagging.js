@@ -21,6 +21,7 @@ class LocationHelper {
      */
     get latitude() {
         return this.#latitude;
+        
     }
 
     #longitude = '';
@@ -70,6 +71,7 @@ class MapManager {
      * @param {string} apiKey Your MapQuest API Key
      */
     constructor(apiKey) {
+        
         this.#apiKey = apiKey;
     }
 
@@ -102,9 +104,28 @@ class MapManager {
  * A function to retrieve the current location and update the page.
  * It is called once the page has been fully loaded.
  */
-// ... your code here ...
+function updateLocation(){
+    try {
+        LocationHelper.findLocation(overwriteLocation);
+    
+    } catch (error) {
+        alert(error.message);    
+    } 
+}
+function overwriteLocation(helper){
+    document.getElementById("Latitute_value")?.setAttribute("value",helper.latitude);
+    document.getElementById("Longitute_value")?.setAttribute("value",helper.longitude);
+    document.getElementById("latHidden")?.setAttribute("value", helper.latitude);
+    document.getElementById("longHidden")?.setAttribute("Value", helper.longitude);
+    mManager = new MapManager("GNQ8FCI311cYDR2EQ9UtoCZGidMfvBIK");
+    mpQuestURL = mManager.getMapUrl(helper.latitude, helper.longitude);
+    document.getElementById("mapView")?.setAttribute("src", mpQuestURL);
+}   
+
+
 
 // Wait for the page to fully load its DOM content, then call updateLocation
 document.addEventListener("DOMContentLoaded", () => {
-    alert("Please change the script 'geotagging.js'");
+    updateLocation();       
 });
+

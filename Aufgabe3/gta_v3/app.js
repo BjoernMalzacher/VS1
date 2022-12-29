@@ -41,13 +41,11 @@ app.use(express.urlencoded({ extended: false }));
  * Configure path for static content.
  * Test the result in a browser here: 'http://localhost:3000/'.
  */
-
-// TODO: ... your code here ...
-
+app.use(express.static(__dirname + '/public')); 
 // Set dedicated script for routing
 app.use('/', indexRouter);
 
-// catch 404 and forward to error handler
+// catch 404 and forward to errviesor handler
 app.use(function(req, res, next) {
     next(createError(404));
   });
