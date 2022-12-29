@@ -29,7 +29,7 @@ router.use(express.json());
 const GeoTagStore = require('../models/geotag-store');
 
 // App routes (A3)
-
+var tagStore = new GeoTagStore();
 /**
  * Route '/' for HTTP 'GET' requests.
  * (http://expressjs.com/de/4x/api.html#app.get.method)
@@ -123,7 +123,15 @@ router.post('/discovery', (req, res) => {
  */
 
 // TODO: ... your code here ...
-
+router.get('/api/geotags',(req,res)=>{
+  if(!req.body.longitude&&!req.body.latitude){
+    var list=tagStore.getNearbyGeoTags(undefined,1);
+  }else{
+    var geotag=new GeoTag("",req.body.latitude,req.body.longitude,"");
+    var list=tagStore.getNearbyGeoTags(geotag,1);
+  }
+  res.json(list);
+});
 
 /**
  * Route '/api/geotags' for HTTP 'POST' requests.

@@ -63,6 +63,7 @@ class InMemoryGeoTagStore{
 
     }    
     getNearbyGeoTags(location, radius) {
+        if(location!=undefined){
         var newList = [];
         this.#taglist.forEach(element=>{
             
@@ -71,7 +72,8 @@ class InMemoryGeoTagStore{
                 newList.push(element);
             
             }
-        });
+        });}
+        else{return this.#taglist;}
         return newList;
         
     }  
