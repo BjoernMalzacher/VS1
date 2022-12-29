@@ -9,6 +9,7 @@
  * A class representing geotags.
  * GeoTag objects should contain at least all fields of the tagging form.
  */
+
 class GeoTag {
     latitude = '';
     longitude =  ''; 
