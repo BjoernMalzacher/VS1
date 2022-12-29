@@ -106,6 +106,7 @@ class MapManager {
  */
 function updateLocation(){
     try {
+        
         LocationHelper.findLocation(overwriteLocation);
     
     } catch (error) {
@@ -113,6 +114,7 @@ function updateLocation(){
     } 
 }
 function overwriteLocation(helper){
+    
     document.getElementById("Latitute_value")?.setAttribute("value",helper.latitude);
     document.getElementById("Longitute_value")?.setAttribute("value",helper.longitude);
     document.getElementById("latHidden")?.setAttribute("value", helper.latitude);
