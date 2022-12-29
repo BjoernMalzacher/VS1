@@ -39,12 +39,12 @@
                     <label for="Latitute_value" class="lat" >
                         Latitude:</label>
                     <input type="text" , name="latitude"  id="Latitute_value" value="<%= latitude %>"
-                        pattern="^-?([0-8]?[0-9]|90)(\.[0-9]{1,10})$" class="lat_input" readonly> </input>
+                        pattern="^-?([0-8]?[0-9]|90)(\.[0-9]{1,10})$" class="lat_input" readonly = "false"> </input>
                     
                         <label for="Longitute_value" class="long">
                         Longitude:</label><input type="text"  name="longitude" class="long_input" id="Longitute_value"
                         value="<%= longitude %>" pattern="^-?([0-9]{1,2}|1[0-7][0-9]|180)(\.[0-9]{1,10})$"
-                        readonly>
+                        readonly = "false">
                     
                     <label for="name_value" class="name">
                         Name:</label>
@@ -75,9 +75,8 @@
                         <label for="search_value" class="search">Search term or keyword:</label> 
                         <input type="text" class="search_input" name="Search" , id="search_value"
                         placeholder="Search">
-
-                        <input type="hidden" class="lathidden" name="lat_hidden" , id="latHidden">
-                        <input type="hidden" class="longhidden" name="long_hidden" , id="longHidden">
+                        <input type="hidden" class="lathidden" name="lat_hidden" , id="latHidden" value = "<%= latitude %>">
+                        <input type="hidden" class="longhidden" name="long_hidden" , id="longHidden" value = "<%= longitude %>">
 
                         <input type="submit" class="search_submit" , value="Search">
                     </div>
