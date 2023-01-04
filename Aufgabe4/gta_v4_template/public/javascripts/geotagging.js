@@ -33,6 +33,7 @@ function createMap(lat, long){
     if(!json_list){
         json_list =[];
     }
+
     mpQuestURL = mManager.getMapUrl(lat, long, JSON.parse(json_list));
     document.getElementById("mapView")?.setAttribute("src", mpQuestURL);
 }
@@ -42,7 +43,7 @@ function overwriteLocation(helper){
         document.getElementById("Latitute_value")?.setAttribute("readonly",true);
     
         document.getElementById("Longitute_value")?.setAttribute("value",helper.longitude);
-        document.getElementById("L  ongitute_value")?.setAttribute("readonly",true);
+        document.getElementById("Longitute_value")?.setAttribute("readonly",true);
         
         document.getElementById("latHidden")?.setAttribute("value", helper.latitude);
         document.getElementById("longHidden")?.setAttribute("Value", helper.longitude);
@@ -53,8 +54,15 @@ function overwriteLocation(helper){
 
 
 
-// Wait for the page to fully load its DOM content, then call updateLocation
+document.getElementById("submit_input")?.addEventListener("submit", ()=>{
+    alert(hallo);
+    //fetch("http://localhost:3000/api/geotags").then( (response) => {console.log("hallo")});
+});
+document.getElementById("search_input")?.addEventListener("submit", ()=>{
+    
+}); 
 document.addEventListener("DOMContentLoaded", () => {
+    alert("you clicked a button");
     console.log("i am getting called");
     updateLocation();       
 });

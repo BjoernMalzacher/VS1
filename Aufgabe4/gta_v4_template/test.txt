@@ -1,12 +1,4 @@
-GET http://localhost:3000/api/geotags/ HTTP/1.1
-content-type: application/json
-
- {
-    "latitude": 49.01379,
-    "longitude": 8.404435,
-    "name": "Building",
-    "hashtag": "#sight"
-  }
+GET http://localhost:3000/api/geotags/ 
 
 POST http://localhost:3000/api/geotags/ HTTP/1.1
 content-type: application/json
