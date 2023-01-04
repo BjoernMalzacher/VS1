@@ -27,57 +27,62 @@ const GeoTagExamples = require("./geotag-examples");
  * - Keyword matching should include partial matches from name or hashtag fields. 
  */
 class InMemoryGeoTagStore{
-    #taglist = [];
+     #taglist = new Map();
+     #id = 0;
 
     constructor(){
         let examples = GeoTagExamples.tagList;     
         examples.forEach(element => {
             let tag = new GeoTag(element[0], element[1],element[2],element[3]);
-            this.#taglist.push(tag);
+            
+            (this.#id++);
+            this.#taglist.set(this.#id, tag);
+            
           });
 
     }
     addGeoTag(geoTag) {
-        this.#taglist.push(geoTag);
-        
+        this.#taglist.set((this.#id++), geoTag);
+        return this.#id;
     
     }
-    removeGeoTaG(geoTag) {
-        newList0 =[]; 
-        newList1 =[];
-        list = 0;
-        this.#taglist.array.forEach(element => {
-            if(geoTag == element){
-                if(!list){
-                    newList0.push(element);
-                }else{
-                    newList1.push(element);
-                }
-            }else{
-                list = 1;
-            }
-
-            
-          });
-          this.#taglist = newList0.concat(newList1);
-
+    getGeoTagByID(id){ 
+        return this.#taglist.get(parseInt(id)); 
+    }
+    updateGeoTag(id, geotag){
+        this.#taglist.set(this.#id, geotag);
+        
+    }
+    removeGeoTagByID(id) {
+        this.#taglist.delete(parseInt(id));
+        
     }    
-    getNearbyGeoTags(location, radius) {
+    getNearbyGeoTags(location , radius =100) {
+        if(location != undefined){
         var newList = [];
+        }else{
+            return Array.from(this.#taglist.values());
+        }
+        
         this.#taglist.forEach(element=>{
-            
-            let distance = Math.sqrt(Math.pow(element.longitude-location.longitude,2)+Math.pow(element.latitude-location.latitude,2));
-            if(distance<= radius){
+            if(distance(location.latitude, location.longitude, element.latitude,element.longitude)<= radius){
                 newList.push(element);
             
             }
+    
         });
+
         return newList;
         
     }  
-    searchNearbyGeoTags(location, radius, keyword) {
-        var newList = [];
+    searchNearbyGeoTags(location, radius= 100, keyword ="") {
+       
         var list = this.getNearbyGeoTags(location,radius); 
+        if(keyword== ""){
+            var newList = [];
+        }else{
+                return list;
+        }
         list.forEach(element => {
           let el_name =element.name.toLowerCase();
           let el_hash = element.hashtag.toLowerCase();
@@ -90,5 +95,18 @@ class InMemoryGeoTagStore{
     }
 
 }
+function distance(lat1, lon1, lat2, lon2) {
+    // Convert degrees to radians
+    const p = 0.017453292519943295; // Math.PI / 180
+  
+    // Calculate the distance
+    const a = 0.5 - Math.cos((lat2 - lat1) * p) / 2 +
+      Math.cos(lat1 * p) * Math.cos(lat2 * p) *
+      (1 - Math.cos((lon2 - lon1) * p)) / 2;
+  
+    // Return the distance in kilometers
+    return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
+  }
+  
 
 module.exports = InMemoryGeoTagStore
