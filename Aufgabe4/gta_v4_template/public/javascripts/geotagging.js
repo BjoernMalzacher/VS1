@@ -16,7 +16,7 @@ function updateLocation(){
     try {
         lat = document.getElementById("latHidden")?.getAttribute("value");
         long = document.getElementById("Longhidden")?.getAttribute("value");
-        if(!lat && !long){
+        if(!lat || !long){
             LocationHelper.findLocation(overwriteLocation); 
        
         }else{
@@ -30,27 +30,39 @@ function updateLocation(){
 function createMap(lat, long){
     mManager = new MapManager("GNQ8FCI311cYDR2EQ9UtoCZGidMfvBIK");
     let json_list =  document.getElementById("mapView").getAttribute("data-tags");
-   //let json_list= $("#mapView").data("tags"); 
-   if(!json_list){
-    json_list =[];
-   }
-   console.log( json_list+"++++++   ");
-    mpQuestURL = mManager.getMapUrl(lat, long);
+    if(!json_list){
+        json_list =[];
+    }
+
+    mpQuestURL = mManager.getMapUrl(lat, long, JSON.parse(json_list));
     document.getElementById("mapView")?.setAttribute("src", mpQuestURL);
 }
 function overwriteLocation(helper){
-        document.getElementById("Latitude_value")?.setAttribute("value",helper.latitude);
-        document.getElementById("Longitude_value")?.setAttribute("value",helper.longitude);
+    
+        document.getElementById("Latitute_value")?.setAttribute("value",helper.latitude);
+        document.getElementById("Latitute_value")?.setAttribute("readonly",true);
+    
+        document.getElementById("Longitute_value")?.setAttribute("value",helper.longitude);
+        document.getElementById("Longitute_value")?.setAttribute("readonly",true);
+        
         document.getElementById("latHidden")?.setAttribute("value", helper.latitude);
         document.getElementById("longHidden")?.setAttribute("Value", helper.longitude);
+    
         createMap(helper.latitude, helper.longitude);
     }  
    
 
 
 
-// Wait for the page to fully load its DOM content, then call updateLocation
+document.getElementById("submit_input")?.addEventListener("submit", ()=>{
+    alert(hallo);
+    //fetch("http://localhost:3000/api/geotags").then( (response) => {console.log("hallo")});
+});
+document.getElementById("search_input")?.addEventListener("submit", ()=>{
+    
+}); 
 document.addEventListener("DOMContentLoaded", () => {
+    alert("you clicked a button");
     console.log("i am getting called");
     updateLocation();       
 });
