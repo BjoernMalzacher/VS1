@@ -10,8 +10,11 @@
  * Define module dependencies.
  */
 const parser = require('body-parser');
+const { response } = require('express');
 const express = require('express');
-const router = express.Router();
+
+
+
 
 /**
  * The module "geotag" exports a class GeoTagStore. 
@@ -19,6 +22,7 @@ const router = express.Router();
  */
 // eslint-disable-next-line no-unused-vars
 const GeoTag = require('../models/geotag');
+const router = express.Router();
 router.use(parser.urlencoded({extended: true }));
 router.use(express.json());
 /**
@@ -28,8 +32,9 @@ router.use(express.json());
 // eslint-disable-next-line no-unused-vars
 const GeoTagStore = require('../models/geotag-store');
 
-// App routes (A3)
-var tagStore = new GeoTagStore();
+
+
+
 /**
  * Route '/' for HTTP 'GET' requests.
  * (http://expressjs.com/de/4x/api.html#app.get.method)
@@ -38,9 +43,10 @@ var tagStore = new GeoTagStore();
  *
  * As response, the ejs-template is rendered without geotag objects.
  */
-
-
+var tagStore = new GeoTagStore();
+// TODO: extend the following route example if necessary
 router.get('/', (req, res) => {
+  
   res.render('index', { 
     taglist: [],
     taglist_json: "",
@@ -121,16 +127,23 @@ router.post('/discovery', (req, res) => {
  * If 'searchterm' is present, it will be filtered by search term.
  * If 'latitude' and 'longitude' are available, it will be further filtered based on radius.
  */
-
-// TODO: ... your code here ...
-router.get('/api/geotags',(req,res)=>{
-  if(!req.body.longitude&&!req.body.latitude){
-    var list=tagStore.getNearbyGeoTags(undefined,1);
+router.get('/api/geotags',(req, res) => {
+  if (!req.body.latitude || !req.body.longitude ){
+    console.log("hallo");
+    res.json(tagStore.getNearbyGeoTags(undefined,100));
   }else{
-    var geotag=new GeoTag("",req.body.latitude,req.body.longitude,"");
-    var list=tagStore.getNearbyGeoTags(geotag,1);
+    
+    var long  = req.body.longitude;
+    var lat = req.body.latitude;
+    if(!req.body.name || !req.body.hash){
+      var geotag = new GeoTag(req.body.name, lat, long, req.body.hash);
+    }else{
+      var list = tagStore.searchNearbyGeoTags(geotag,100,req.body.name);
+    }
+    res.json(list); 
   }
-  res.json(list);
+
+  
 });
 
 /**
@@ -144,8 +157,13 @@ router.get('/api/geotags',(req,res)=>{
  * The new resource is rendered as JSON in the response.
  */
 
-// TODO: ... your code here ...
-
+router.post('/api/geotags',(req,res) => {
+ 
+  const geotag = new GeoTag(req.body.name, req.body.latitude,req.body.longitude, req.body.hashtag);
+  var newID = tagStore.addGeoTag(geotag);
+  res.setHeader("Content-Location", req.url+newID);
+  res.status(201).json(tagStore.getGeoTagByID(newID));
+});
 
 /**
  * Route '/api/geotags/:id' for HTTP 'GET' requests.
@@ -156,10 +174,18 @@ router.get('/api/geotags',(req,res)=>{
  *
  * The requested tag is rendered as JSON in the response.
  */
+router.get('/api/geotags/:id', (req, res)=> {
+  
+  
+  var tag = tagStore.getGeoTagByID(req.params.id);
+  console.log(tag);
+  if(!tag){
+    res.status(404).end();
+  }else{
+    res.json(tag);
+  }
 
-// TODO: ... your code here ...
-
-
+});
 /**
  * Route '/api/geotags/:id' for HTTP 'PUT' requests.
  * (http://expressjs.com/de/4x/api.html#app.put.method)
@@ -173,9 +199,16 @@ router.get('/api/geotags',(req,res)=>{
  * Changes the tag with the corresponding ID to the sent value.
  * The updated resource is rendered as JSON in the response. 
  */
+router.put('/api/geotags/:id', (req, res)=> {
+  let tag = tagStore.getGeoTagByID(req.params.id);
+  if(!tag){
+    res.status(404).end();
+  }else{
+    tagStore.updateGeoTag(req.params.id, req.body);
+    res.status(202).json(tag);
+  }
 
-// TODO: ... your code here ...
-
+});
 
 /**
  * Route '/api/geotags/:id' for HTTP 'DELETE' requests.
@@ -188,6 +221,16 @@ router.get('/api/geotags',(req,res)=>{
  * The deleted resource is rendered as JSON in the response.
  */
 
-// TODO: ... your code here ...
+router.delete('/api/geotags/:id', (req, res) => {
+  var tag = tagStore.getGeoTagByID(req.params.id);
+  if(!tag){
+    res.status(404).end();
+  }else{
+    tagStore.removeGeoTagByID(req.params.id);
+    res.json(tag);
+  }
 
+
+});
 module.exports = router;
+
