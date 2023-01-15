@@ -30,7 +30,7 @@
 
             <!-- ############### VS1Lab 1a Form 1 Start -->
          
-            <form id="tag-form" action="/tagging" method="post" onsubmit="">
+            <form id="tag-form" action="/tagging" method="post">
                 <Fieldset class="tagging_field">
 
                     <legend class="tagging_legend" >Add a new GeoTag</legend>
@@ -49,12 +49,12 @@
                     <label for="name_value" class="name">
                         Name:</label>
                     <input type="text" name="name" id="name_value" class="name_input" placeholder="e.g Central Berlin " pattern="[A-Za-z#]+"
-                        size="10" required>
+                        size="10" value=""required>
                     
                     <label for="hashtag_value" class="hash">Hashtag:</label>
-                    <input type="text" name="hashtag" id="Hash_id" class="hash_input" placeholder="#ber" pattern="#[A-Za-z*]+"
+                    <input type="text" name="hashtag" value="" id="Hash_id" class="hash_input" placeholder="#ber" pattern="#[A-Za-z*]+"
                         size="10"> 
-                    <input type="submit" class="submit_input" value="Add Tag" onsubmit="return false;">
+                    <input type="submit" class="submit_input" id="tag_input" value="Add Tag" >
        
                 </Fieldset>
             </form>
@@ -68,7 +68,7 @@
 
             <!-- ############### VS1Lab 1a Form 2 Start -->
             
-            <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="post"  onsubmit="return false;">
+            <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="post" >
                 <fieldset class="search_field">
                     <legend>Search</legend>
                     <div class="input_container">

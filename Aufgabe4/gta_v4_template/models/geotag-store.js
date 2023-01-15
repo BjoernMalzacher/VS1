@@ -46,6 +46,9 @@ class InMemoryGeoTagStore{
         return this.#id;
     
     }
+    getGeoTags(){
+        return Array.from(this.#taglist.values());
+    }
     getGeoTagByID(id){ 
         return this.#taglist.get(parseInt(id)); 
     }
@@ -53,6 +56,7 @@ class InMemoryGeoTagStore{
         this.#taglist.set(this.#id, geotag);
         
     }
+
     removeGeoTagByID(id) {
         this.#taglist.delete(parseInt(id));
         

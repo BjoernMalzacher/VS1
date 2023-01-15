@@ -46,10 +46,12 @@ const GeoTagStore = require('../models/geotag-store');
 var tagStore = new GeoTagStore();
 // TODO: extend the following route example if necessary
 router.get('/', (req, res) => {
-  
+ 
+
+  var list = tagStore.getGeoTags(); 
   res.render('index', { 
-    taglist: [],
-    taglist_json: "",
+    taglist: list,
+    taglist_json: JSON.stringify(list),
     latitude : "", 
     longitude : ""});
 });
@@ -75,7 +77,7 @@ router.post('/tagging', (req, res) => {
   let hash = req.body.hashtag;  
   geotag = new GeoTag(name, lat, long ,hash);
   tagStore.addGeoTag(geotag);
-  let neartags = tagStore.getNearbyGeoTags(geotag, 1);
+  let neartags = tagStore.getNearbyGeoTags(geotag);
   res.render("index", {
     taglist: neartags,
     latitude: lat,
@@ -128,17 +130,19 @@ router.post('/discovery', (req, res) => {
  * If 'latitude' and 'longitude' are available, it will be further filtered based on radius.
  */
 router.get('/api/geotags',(req, res) => {
+  
   if (!req.body.latitude || !req.body.longitude ){
-    console.log("hallo");
     res.json(tagStore.getNearbyGeoTags(undefined,100));
   }else{
     
     var long  = req.body.longitude;
     var lat = req.body.latitude;
-    if(!req.body.name || !req.body.hash){
-      var geotag = new GeoTag(req.body.name, lat, long, req.body.hash);
+   
+    if(!req.body.search){
+      
+      var geotag = new GeoTag("", lat, long, "");
     }else{
-      var list = tagStore.searchNearbyGeoTags(geotag,100,req.body.name);
+      var list = tagStore.searchNearbyGeoTags(geotag,100,search);
     }
     res.json(list); 
   }
@@ -163,6 +167,7 @@ router.post('/api/geotags',(req,res) => {
   var newID = tagStore.addGeoTag(geotag);
   res.setHeader("Content-Location", req.url+newID);
   res.status(201).json(tagStore.getGeoTagByID(newID));
+  res.json(geotag);
 });
 
 /**
