@@ -80,13 +80,8 @@ class InMemoryGeoTagStore{
         
     }  
     searchNearbyGeoTags(location, radius= 100, keyword ="") {
-       
         var list = this.getNearbyGeoTags(location,radius); 
-        if(keyword== ""){
-            var newList = [];
-        }else{
-                return list;
-        }
+        var newList = [];
         list.forEach(element => {
           let el_name =element.name.toLowerCase();
           let el_hash = element.hashtag.toLowerCase();

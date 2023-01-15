@@ -53,7 +53,7 @@ function createMap(lat, long){
         json_list = "[]";
     }
 
-    mpQuestURL = mManager.getMapUrl(lat, long, JSON.parse(json_list));
+    mpQuestURL = mManager.getMapUrl(lat, long, JSON.parse(json_list), 5);
     document.getElementById("mapView")?.setAttribute("src", mpQuestURL);
 }
 function overwriteLocation(helper){
@@ -72,14 +72,14 @@ function overwriteLocation(helper){
    
 
 
-    function submitFunc(event){
+    async function submitFunc(event){
         var lat = document.getElementById("Latitute_value")?.getAttribute("Value");
         var long = document.getElementById("Longitute_value")?.getAttribute("Value");
         var name = document.getElementById("name_value")?.value;        
         var hash = document.getElementById("Hash_id")?.value;
         var geotag = new GeoTag(name,lat,long,hash);
         console.log(geotag);
-        fetch('http://localhost:3000/api/geotags', {
+       await fetch('http://localhost:3000/api/geotags', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -87,7 +87,7 @@ function overwriteLocation(helper){
           body: JSON.stringify(geotag)
         })
 .catch(error => console.error(error));
-        toListElement(geotag);
+        addtoListElement(geotag);
         event.preventDefault();
 }
 function addtoListElement(geotag){
@@ -100,20 +100,32 @@ function emptyListElement(){
     document.getElementById("discoveryResults").innerHTML = "";
     
 }
-function searchFunc(event){
+async function  searchFunc(event){
     var lat = document.getElementById("latHidden")?.getAttribute("Value");
     var long = document.getElementById("longHidden")?.getAttribute("Value");
-    var search = document.getElementById("search_value")?.getAttribute("Value");
-    fetch('http://localhost:3000/api/geotags', {
+    var search = document.getElementById("search_value")?.value;
+    await fetch('http://localhost:3000/api/geotags', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'latitude' : lat,
-          'longitude': long,
-          'search' : search
+         
+            'latitude' : lat,
+            'longitude': long,
+            'search' : search
 
         }
-      }).then(response => response.json()).then( data => console.log(data))
+        }).then(response => response.json()).then( data => {
+                emptyListElement();
+                for(let index = 0; index < data.length; index++) {
+                    addtoListElement(data[index]);
+                    
+                }
+                document.getElementById("mapView")?.setAttribute('data-tags',JSON.stringify(data));
+                 createMap(lat,long);
+            }
+              
+
+            )
 
       .catch(error => console.error(error));
       event.preventDefault();
