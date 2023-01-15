@@ -130,15 +130,15 @@ router.post('/discovery', (req, res) => {
  * If 'latitude' and 'longitude' are available, it will be further filtered based on radius.
  */
 router.get('/api/geotags',(req, res) => {
-  if (!req.headers.longitude|| !req.headers.latitude){
+  if (!req.query.long|| !req.query.lat){
     res.json(tagStore.getNearbyGeoTags(undefined,100));
   }else{
     
-    var long  = req.headers.longitude;
-    var lat = req.headers.latitude;  
+    var long  = req.query.long;
+    var lat = req.query.lat;  
     var geotag = new GeoTag("", lat, long, "");
-    var list = tagStore.searchNearbyGeoTags(geotag,100,req.headers.search);
-    console.log(req.headers.search+":::"+list.length);
+    var list = tagStore.searchNearbyGeoTags(geotag,100,req.query.search);
+    console.log(lat+":::"+ long+"___"+ req.query.search);
     res.json(list); 
   }
 

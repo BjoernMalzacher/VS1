@@ -104,15 +104,10 @@ async function  searchFunc(event){
     var lat = document.getElementById("latHidden")?.getAttribute("Value");
     var long = document.getElementById("longHidden")?.getAttribute("Value");
     var search = document.getElementById("search_value")?.value;
-    await fetch('http://localhost:3000/api/geotags', {
+    await fetch('http://localhost:3000/api/geotags?search='+search+'&lat='+lat+'&long='+long, {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json',
-         
-            'latitude' : lat,
-            'longitude': long,
-            'search' : search
-
+          'Content-Type': 'application/json'
         }
         }).then(response => response.json()).then( data => {
                 emptyListElement();
