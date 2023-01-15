@@ -54,7 +54,7 @@
                     <label for="hashtag_value" class="hash">Hashtag:</label>
                     <input type="text" name="hashtag" id="Hash_id" class="hash_input" placeholder="#ber" pattern="#[A-Za-z*]+"
                         size="10"> 
-                    <input type="submit" class="submit_input" value="Add Tag">
+                    <input type="submit" class="submit_input" value="Add Tag" onsubmit="return false;">
        
                 </Fieldset>
             </form>
@@ -68,7 +68,7 @@
 
             <!-- ############### VS1Lab 1a Form 2 Start -->
             
-            <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="post">
+            <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="post"  onsubmit="return false;">
                 <fieldset class="search_field">
                     <legend>Search</legend>
                     <div class="input_container">
