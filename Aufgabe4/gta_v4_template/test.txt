@@ -22,7 +22,7 @@ content-type: application/json
  {
     "latitude": 49.01379,
     "longitude": 8.404435,
-    "name": "Bjoerns test",
+    "name": "nicht Bjoerns test",
     "hashtag": "#sight"
   } 
 

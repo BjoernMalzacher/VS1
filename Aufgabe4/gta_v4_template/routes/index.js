@@ -138,8 +138,8 @@ router.get('/api/geotags',(req, res) => {
     var lat = req.query.lat;  
     var geotag = new GeoTag("", lat, long, "");
     var list = tagStore.searchNearbyGeoTags(geotag,100,req.query.search);
-    console.log(lat+":::"+ long+"___"+ req.query.search);
-    res.json(list); 
+   
+ res.json(list); 
   }
 
   
@@ -222,6 +222,7 @@ router.put('/api/geotags/:id', (req, res)=> {
  */
 
 router.delete('/api/geotags/:id', (req, res) => {
+  console.log(req.params.id);
   var tag = tagStore.getGeoTagByID(req.params.id);
   if(!tag){
     res.status(404).end();

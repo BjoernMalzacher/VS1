@@ -87,8 +87,9 @@ function overwriteLocation(helper){
           body: JSON.stringify(geotag)
         })
 .catch(error => console.error(error));
-        addtoListElement(geotag);
-        event.preventDefault();
+
+    addtoListElement(geotag);
+    event.preventDefault();
 }
 function addtoListElement(geotag){
     var p = document.getElementById("discoveryResults").innerHTML 
